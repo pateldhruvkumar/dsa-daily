@@ -10,7 +10,12 @@ def hash_function(name):
 
 def add_contact(name, phoneNumber, email, age):
     index = hash_function(name)
+    for contact in phoneNumberList[index]:
+        if contact["name"] == name:
+            print("Contact already exists")
+            return
     phoneNumberList[index].append({"name": name, "phoneNumber": phoneNumber, "email": email, "age": age})
+
 
 def find_contact(name):
     index = hash_function(name)
@@ -28,7 +33,8 @@ def delete_contact(name):
     print("Contact not found")
 
 add_contact("Bob", "123-456", "bob@gmail.com", 25)
-add_contact("Alice", "789-101", "alice@gmail.com", 30)
-print(find_contact("Bob"))
+add_contact("Bob", "999-999", "bob2@gmail.com", 26)
+print("phoneNumberList", phoneNumberList)
+print(find_contact("Bob"))  # which Bob gets returned?
 delete_contact("Bob")
 find_contact("Bob")
